@@ -527,6 +527,11 @@ echo "--------------------"
 echo "FOR git node npm gitbook-cli"
 echo "----------"
 
+npm install -g nvm 
+nvm install 10.24.1
+nvm use 10.24.1
+
+
 git config --global user.name ${GIT_NAME}
 git config --global user.email ${GIT_EMAIL}
 echo "git"
@@ -732,6 +737,7 @@ if [ $? -eq 0 ]; then
 else  # need plugins or README.md SUMMARY.md
   print_warning "3303:gitbook built fail, maybe need some file or plugins, now we try again"
   gitbook init
+  npm install -g mathjax@2.7.6
   gitbook install
   gitbook build --gitbook=${GITBOOK_BUILD_VERSION}
   if [ $? -eq 0 ]; then  # build again success with plugins
